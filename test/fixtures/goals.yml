@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  target: 2015-06-11
+  acheived: false
+  workstream_id: 1
+
+two:
+  name: MyString
+  target: 2015-06-11
+  acheived: false
+  workstream_id: 1

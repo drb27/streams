@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  target: 2015-06-11
+  done: false
+  goal_id: 1
+  successor_id: 1
+
+two:
+  name: MyString
+  target: 2015-06-11
+  done: false
+  goal_id: 1
+  successor_id: 1
