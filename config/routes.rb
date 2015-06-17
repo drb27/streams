@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'workstreams/new'
+
+  get 'workstreams/create'
+
+  get 'workstreams/update'
+
+  get 'workstreams/edit'
+
+  get 'workstreams/destroy'
+
+  get 'workstreams/show'
+
+  get 'workstreams/index'
+
   # get 'home/index'
   root 'home#index'
 
