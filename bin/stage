@@ -2,5 +2,8 @@
 sudo service thin stop
 sudo service nginx stop
 sudo rm -r /var/www/ruby.drb27.me/*
-sudo git archive --format=tar --prefix=junk/ HEAD | (cd /var/www/ruby.drb27.me/ && tar xf -)
+sudo bash -c 'git archive --format=tar HEAD | (cd /var/www/ruby.drb27.me/ && tar xf -)'
 sudo chown -R www-data /var/www/ruby.drb27.me/*
+sudo /var/www/ruby.drb27.me/bin/rake db:migrate
+sudo service thin start
+sudo service nginx start
