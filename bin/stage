@@ -1,0 +1,6 @@
+#!/bin/bash
+sudo service thin stop
+sudo service nginx stop
+sudo rm -r /var/www/ruby.drb27.me/*
+sudo git archive --format=tar --prefix=junk/ HEAD | (cd /var/www/ruby.drb27.me/ && tar xf -)
+sudo chown -R www-data /var/www/ruby.drb27.me/*
