@@ -1,2 +1,11 @@
 <h1>Workstreams#show</h1>
-<p>Find me in app/views/workstreams/show.html.erb</p>
+<h2><%= @workstream.name %></h2>
+<% if not @workstream.root? %>
+<%= link_to "Return to parent", @workstream.parent %>
+<% end %>
+<% if @workstream.parent? %>
+<p>Substreams:</p>
+<% @workstream.children.each do |c| %>
+<p><%= link_to c.name, c %></p>
+<% end %>
+<% end %>

@@ -15,8 +15,10 @@ class WorkstreamsController < ApplicationController
   end
 
   def show
+    @workstream = Workstream.find_by_id params[:id]
   end
 
   def index
+    @root_workstreams = Workstream.root_collection
   end
 end
