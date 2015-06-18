@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+root=Workstream.create( name: 'Root Workstream' )
+plymouth=Project.create( name: 'Plymouth Rock', parent: root )
+fifth=Project.create( name: '5th Floor', parent: plymouth )
