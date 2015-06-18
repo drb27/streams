@@ -9,3 +9,10 @@
 <p><%= link_to c.name, c %></p>
 <% end %>
 <% end %>
+<p>Goals</p>
+<p><%= link_to "Add goal", new_workstream_goal_path(@workstream) %></p>
+<% if @workstream.goals.count > 0 %>
+<% @workstream.goals.each do |g| %>
+<%= g.name %><br/>
+<% end %>
+<% end %>

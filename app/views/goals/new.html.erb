@@ -1,0 +1,6 @@
+<h1>Goals#new</h1>
+<p>You are adding a new goal to <b><%= @workstream.name %></b></p>
+<%= form_for [@workstream.becomes(Workstream),@new_goal] do |f| %>
+<%= f.text_field :name %>
+<%= f.submit "Add goal" %>
+<% end %>

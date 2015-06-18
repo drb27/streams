@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   # get 'home/index'
   root 'home#index'
 
-  resources :workstreams
+  resources :workstreams do
+    resources :goals
+  end
+
   resources :projects, :controller => "workstreams", :type => "Project"
 
   # The priority is based upon order of creation: first created -> highest priority.
