@@ -7,9 +7,14 @@ class GoalsController < ApplicationController
   end
 
   def create
-    newgoal = Goal.new params[:goal]
+    newgoal = Goal.new goal_params
+    newgoal.workstream_id = params[:workstream_id]
     newgoal.save
-    redirect_to @workstream
+    redirect_to newgoal.workstream
+  end
+
+  def goal_params
+    params.require(:goal).permit(:name)
   end
 
 end
