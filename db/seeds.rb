@@ -9,3 +9,5 @@
 root=Workstream.create( name: 'Root Workstream' )
 plymouth=Project.create( name: 'Plymouth Rock', parent: root )
 fifth=Project.create( name: '5th Floor', parent: plymouth )
+drb=User.create( name: 'drb', pwd: 'drb', isadmin: false)
+admin=User.create( name: 'admin', pwd: 'admin', isadmin: true )
