@@ -13,7 +13,12 @@ class ApplicationController < ActionController::Base
 
   def retrieve_user
     if session[:user_id]
-      @current_user = User.find session[:user_id]
+      begin
+        @current_user = User.find session[:user_id]
+      rescue StandardError
+        @current_user = false
+        session.delete :user_id
+      end
     else
       @current_user = false
     end
@@ -35,6 +40,10 @@ class ApplicationController < ActionController::Base
     else
       return true
     end
+  end
+
+  def current_user
+    return @current_user
   end
 
 before_filter :retrieve_user

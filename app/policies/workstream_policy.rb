@@ -1,5 +1,5 @@
 class WorkstreamPolicy < ApplicationPolicy
   def fetch?
-    false
+    user && user.admin?
   end
 end
