@@ -10,9 +10,17 @@ class ApplicationController < ActionController::Base
   protected 
 
   # User login management
-  def authenticate_user
+
+  def retrieve_user
     if session[:user_id]
       @current_user = User.find session[:user_id]
+    else
+      @current_user = false
+    end
+  end
+
+  def authenticate_user
+    if @current_user
       return true
     else
       redirect_to( :controller => 'sessions', :action => 'login')
@@ -28,5 +36,7 @@ class ApplicationController < ActionController::Base
       return true
     end
   end
+
+before_filter :retrieve_user
   
 end

@@ -15,6 +15,16 @@ class SessionsController < ApplicationController
   def setting
   end
 
+  def logout
+    
+    # Take the user out of the session
+    session.delete :user_id
+
+    # Redirect to the homepage
+    redirect_to :controller => 'home', :action => 'index'
+    
+  end
+  
   def login_attempt
     authorized_user = User.authenticate( params[:name], params[:pwd])
     if authorized_user
