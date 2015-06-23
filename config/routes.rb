@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'sessions/login'
 
+  get 'sessions/denied'
+
   get 'sessions/logout'
   
   get 'sessions/home'

@@ -46,6 +46,13 @@ class ApplicationController < ActionController::Base
     return @current_user
   end
 
-before_filter :retrieve_user
+  def access_denied
+    redirect_to :controller => 'sessions', :action => 'denied'
+  end
+
+  # All Pundit access violations get handled by this
+  rescue_from Pundit::NotAuthorizedError, :with => :access_denied 
+  
+  before_filter :retrieve_user
   
 end
