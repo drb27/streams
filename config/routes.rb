@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get 'workstreams/index'
 
+  get 'api/workstreams/:id' => 'workstream_api#fetch'
+
   # get 'home/index'
   root 'home#index'
 

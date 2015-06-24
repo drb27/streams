@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+xc<!DOCTYPE html>
 <html>
 <head>
   <title>Streams</title>
@@ -9,10 +9,6 @@
 <body>
 
 <%= yield %>
-<% if Rails.env.development? %>
-<div class="debug">
-Ruby <%= RUBY_VERSION %> 
-</div>
-<% end %>
+
 </body>
 </html>
