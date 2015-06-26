@@ -1,7 +1,8 @@
 class GoalsController < ApplicationController
 
   def new
-    @workstream = Workstream.find_by_id params[:workstream_id]
+    @workstream = (Workstream.find_by_id params[:workstream_id]).becomes(Workstream)
+    authorize @workstream, :modifygoals?
     @new_goal = Goal.new
     @new_goal.workstream = @workstream
   end
@@ -9,6 +10,7 @@ class GoalsController < ApplicationController
   def create
     newgoal = Goal.new goal_params
     newgoal.workstream_id = params[:workstream_id]
+    authorize newgoal
     newgoal.save
     redirect_to newgoal.workstream
   end

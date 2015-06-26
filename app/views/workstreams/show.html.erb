@@ -10,7 +10,9 @@
 <% end %>
 <% end %>
 <p>Goals</p>
+<% if policy(@workstream).modifygoals? %>
 <p><%= link_to "Add goal", new_workstream_goal_path(@workstream) %></p>
+<% end %>
 <% if @workstream.goals.count > 0 %>
 <% @workstream.goals.each do |g| %>
 <%= g.name %><br/>
