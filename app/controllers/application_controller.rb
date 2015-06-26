@@ -1,3 +1,5 @@
+require 'streamsmeta'
+
 class ApplicationController < ActionController::Base
 
   # Use Pundit for user authorization

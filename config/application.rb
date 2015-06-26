@@ -24,6 +24,6 @@ module Streams
     config.active_record.raise_in_transactional_callbacks = true
 
     # Auto-load classes
-    config.autoload_paths += %W(#{config.root}/app/lib)
+    config.autoload_paths << Rails.root.join('app').join('lib')
   end
 end
