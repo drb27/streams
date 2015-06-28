@@ -2,4 +2,5 @@
 <div id='msg' class='<%= tag %>'>
 <%= yield :messages %>
 </div>
+<a href='javascript:void(0);' onclick='$("#msg").fadeOut(400);$(this).fadeOut(400);'>Dismiss</a>
 <% end %>
