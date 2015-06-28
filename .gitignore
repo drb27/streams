@@ -16,3 +16,5 @@
 !/log/.keep
 /tmp
 *~
+.ruby-version
+.ruby-gemset

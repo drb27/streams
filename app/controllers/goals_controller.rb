@@ -15,8 +15,21 @@ class GoalsController < ApplicationController
     redirect_to newgoal.workstream
   end
 
+  def destroy
+    g = Goal.find_by_id params[:id]
+    w = g.workstream.becomes(Workstream)
+    authorize g
+    g.delete
+
+    respond_to do |format|
+      format.html { redirect_to w }
+      format.js
+    end
+
+  end
+  
   def goal_params
-    params.require(:goal).permit(:name)
+    params.require(:goal).permit(:name,:target,:achieved)
   end
 
 end

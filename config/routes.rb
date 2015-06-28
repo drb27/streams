@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'ajax/dispatch' => 'ajax#dispatch_action'
+
   get 'sessions/login'
 
   get 'sessions/denied'
@@ -43,6 +45,8 @@ Rails.application.routes.draw do
 
   resources :projects, :controller => "workstreams", :type => "Project"
 
+  resources :goals
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

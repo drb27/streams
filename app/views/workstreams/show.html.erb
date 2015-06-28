@@ -1,5 +1,4 @@
-<h1>Workstreams#show</h1>
-<h2><%= @workstream.name %></h2>
+<h1>Workstream: <%= @workstream.name %> </h1>
 <% if not @workstream.root? %>
 <%= link_to "Return to parent", @workstream.parent %>
 <% end %>
@@ -14,7 +13,13 @@
 <p><%= link_to "Add goal", new_workstream_goal_path(@workstream) %></p>
 <% end %>
 <% if @workstream.goals.count > 0 %>
-<% @workstream.goals.each do |g| %>
-<%= g.name %><br/>
+<table class="goaltable">
+<% (@workstream.ordered_goals.select { |gl| !gl.achieved }).each do |g| %>
+<tr id='<%= "goalid_#{g.id}" %>'>
+  <td><%= "#{g.name}" %></td>
+  <td><%= "#{g.due_days.abs} day#{g.due_days.abs>1?"s":""} #{g.due_days<0?"ago":"remaining"}" %></td>
+  <td><%= link_to "Delete", g, :method => :delete, :action => :destroy, :remote => true %></td>
+</tr>
 <% end %>
+</table>
 <% end %>

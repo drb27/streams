@@ -3,7 +3,7 @@ class CreateGoals < ActiveRecord::Migration
     create_table :goals do |t|
       t.string :name
       t.date :target
-      t.boolean :acheived
+      t.boolean :achieved
       t.integer :workstream_id
 
       t.timestamps null: false

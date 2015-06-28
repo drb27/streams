@@ -1,0 +1,61 @@
+$sidebar-width: 200px;
+$accent: #19A3D1;
+
+html,
+body {
+     font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+     margin:0px;
+     font-size: 13px;
+     background-color:white;
+     padding:2px;
+     margin:2px;
+}
+
+#footer {
+     font-size:11px;
+     color:#404040;
+     clear:left;
+}
+
+#pane {
+      margin-left:$sidebar-width+10px;
+}
+
+#sidebar {
+    float:left;
+    width:$sidebar-width;
+}
+
+#msg {
+     padding:2px;
+     font-style:italic;
+}
+
+#msg.normal {
+     background-color:#eee;
+     border:1px #ccc solid;
+     color:#444;
+}
+
+#msg.success {
+     background-color:#dfd;
+     border:1px #0e0 solid;
+     color:#0c0;
+}
+
+#msg.warning {
+     background-color:#eee;
+     border:1px #ccc solid;
+     color:#444;
+}
+
+#msg.error {
+     background-color:#ebb;
+     border:1px #f00 solid;
+     font-weight:bold;
+     color:#e00;
+}
+
+a {
+  color: $accent;
+}

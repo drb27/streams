@@ -1,2 +1,5 @@
-<h1>Sessions#home,</h1>
-<p>Find me in app/views/sessions/home,.html.erb</p>
+<h1>Dashboard</h1>
+<p> Welcome, <%= @current_user.name %>.</p>
+<% if @current_user.admin? %>
+<p>You have special powers.</p>
+<% end %>

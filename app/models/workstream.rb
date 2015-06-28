@@ -15,4 +15,8 @@ class Workstream < ActiveRecord::Base
     return self.children.count > 0
   end
 
+  def ordered_goals
+    self.goals.sort { |x,y| x.target <=> y.target }
+  end
+  
 end

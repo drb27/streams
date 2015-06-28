@@ -2,6 +2,14 @@ class Goal < ActiveRecord::Base
   belongs_to :workstream
   has_many :task
 
+  def due_days
+    return (self.target - Date.today).to_i
+  end
+
+  def late?
+    self.due_days < 0
+  end
+  
   def ordered_tasks
     l=[]
     tasks = []

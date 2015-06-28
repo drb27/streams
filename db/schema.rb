@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150623101659) do
   create_table "goals", force: :cascade do |t|
     t.string   "name"
     t.date     "target"
-    t.boolean  "acheived"
+    t.boolean  "achieved"
     t.integer  "workstream_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
