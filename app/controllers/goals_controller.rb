@@ -39,11 +39,17 @@ class GoalsController < ApplicationController
 
   def complete
     g=Goal.find_by_id params[:id]
-    w = g.workstream.becomes(Workstream)
+    @w = g.workstream.becomes(Workstream)
+    @acs = GoalsController.actions.keys
     authorize g
     g.achieved=true
     g.save
-    redirect_to g.workstream
+    @gls = @w.ordered_goals.select { |g| !g.achieved }
+
+    respond_to do |format|
+      format.html  { redirect_to g.workstream }
+      format.js { render action: "api_table" } 
+    end
   end
 
   def api_table
