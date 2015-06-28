@@ -1,3 +1,13 @@
+<% content_for :head do %>
+
+<script>
+  $(function() {
+     eip_initialize();
+  });
+</script>
+
+<% end %>
+
 <h1>Workstream: <%= @workstream.name %> </h1>
 <% if not @workstream.root? %>
 <%= link_to "Return to parent", @workstream.parent %>
@@ -9,14 +19,17 @@
 <% end %>
 <% end %>
 <h3>Goals</h3>
-<% if policy(@workstream).modifygoals? %>
-<p><%= link_to "Add goal", new_workstream_goal_path(@workstream) %></p>
-<% end %>
+<p>
+  <%= link_to "Refresh", api_goal_table_path(@workstream), :remote => true %>
+  <% if policy(@workstream).modifygoals? %>
+  | <%= link_to "Add goal", new_workstream_goal_path(@workstream) %>
+  <% end %>
+</p>
 <% if @workstream.goals.count > 0 %>
 <div id='goalslist'>
 <%= render partial: "goals/goal_table", locals: { gls: @workstream.ordered_goals.select { |g| !g.achieved },
                                                   acs: @actions,
                                                   id:  "goalstable" } %>
 </div>
-<%= link_to "Refresh", api_goal_table_path(@workstream), :remote => true %>
+
 <% end %>
