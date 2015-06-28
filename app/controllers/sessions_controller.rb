@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   end
   
   def login
+    @message=""
   end
 
   def home
@@ -35,6 +36,7 @@ class SessionsController < ApplicationController
       session[:user_id] = authorized_user.id
       redirect_to :action => 'home'
     else
+      @message = "Your credentials were bad - please try again"
       render "login"
     end
 

@@ -15,7 +15,4 @@
   <%= link_to "Log in", :controller => 'sessions', :action => 'login' %>
   <% end %>
 </div><hr/>
-<div id='msg' class='success'>
-  Your request was successfully processed
-</div>
-
+<%= render partial: "messages" %>
