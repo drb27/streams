@@ -4,9 +4,9 @@ class StreamsMsg
   ERROR=2
 
   @@tags = {
-    0 => 'msgsuccess',
-    1 => 'msgwarning',
-    2 => 'msgerror'
+    0 => 'success',
+    1 => 'warning',
+    2 => 'error'
   }
 
   attr_reader :severity

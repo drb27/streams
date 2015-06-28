@@ -1,5 +1,5 @@
 <% if content_for?(:messages) %>
-<div id='msg' class='success'>
+<div id='msg' class='<%= tag %>'>
 <%= yield :messages %>
 </div>
 <% end %>

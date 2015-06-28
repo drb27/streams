@@ -1,11 +1,13 @@
 <% if flash[:messages] && flash[:messages]["messages"].count > 0 %>
 <% content_for :messages do %>
 <% @hdrmsg = StreamsMsg.new flash[:messages]["messages"], flash[:messages]["severity"] %>
-Severity: <%= @hdrmsg.tag %><br/>
+<% @tag=@hdrmsg.tag %>
 <% @hdrmsg.each do |m| %>
 <%= m %>
 <% end %>
 <% end %>
+<% else %>
+<% @tag=nil %>
 <% end %>
 
 <div id='logo'>
@@ -25,4 +27,4 @@ Severity: <%= @hdrmsg.tag %><br/>
   <%= link_to "Log in", :controller => 'sessions', :action => 'login' %>
   <% end %>
 </div><hr/>
-<%= render partial: "messages" %>
+<%= render partial: "messages", locals: { :tag => @tag }  %>
