@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
   end
   
   def login
-    @message=""
   end
 
   def home

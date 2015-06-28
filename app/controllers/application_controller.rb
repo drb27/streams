@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   # User login management
 
   def retrieve_user
+    @message=""
     if session[:user_id]
       begin
         @current_user = User.find session[:user_id]
