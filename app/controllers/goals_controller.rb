@@ -41,6 +41,7 @@ class GoalsController < ApplicationController
     g=Goal.find_by_id params[:id]
     @w = g.workstream.becomes(Workstream)
     @acs = GoalsController.actions.keys
+    @divname = "goalslist"
     authorize g
     g.achieved=true
     g.save
@@ -56,6 +57,7 @@ class GoalsController < ApplicationController
     @w = Workstream.find_by_id params[:id]
     @gls = @w.ordered_goals.select { |g| !g.achieved }
     @acs = GoalsController.actions.keys
+    @divname = "goalslist"
     respond_to do |format|
       format.html { render partial:"goal_table", locals: { gls: @gls,
                                                            acs: @als,
