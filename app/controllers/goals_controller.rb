@@ -1,5 +1,14 @@
 class GoalsController < ApplicationController
 
+  @actions = {
+    :destroy => { :label => "Delete", :method => :delete, :remote => true, :controller => 'goals' },
+    :complete => { :label => "Complete", :method => :get, :remote => true, :controller => 'goals' }
+  }
+
+  def self.actions
+    return @actions
+  end
+
   def new
     @workstream = (Workstream.find_by_id params[:workstream_id]).becomes(Workstream)
     authorize @workstream, :modifygoals?
@@ -26,6 +35,15 @@ class GoalsController < ApplicationController
       format.js
     end
 
+  end
+
+  def complete
+    g=Goal.find_by_id params[:id]
+    w = g.workstream.becomes(Workstream)
+    authorize g
+    g.achieved=true
+    g.save
+    redirect_to g.workstream
   end
   
   def goal_params

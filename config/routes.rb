@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
   get 'workstreams/index'
 
+  get 'goals/:id/complete' => 'goals#complete'
+  
   get 'api/workstreams/:id' => 'workstream_api#fetch'
 
   # get 'home/index'

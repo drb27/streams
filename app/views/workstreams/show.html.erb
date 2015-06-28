@@ -18,7 +18,11 @@
 <tr id='<%= "goalid_#{g.id}" %>'>
   <td><%= "#{g.name}" %></td>
   <td><%= "#{g.due_days.abs} day#{g.due_days.abs>1?"s":""} #{g.due_days<0?"ago":"remaining"}" %></td>
-  <td><%= link_to "Delete", g, :method => :delete, :action => :destroy, :remote => true %></td>
+  <% @actions.each do |a| %>
+  <% if Pundit.policy(@current_user,g).send a.to_s+"?" %>
+  <td><%= tag_link_to a,g %><td>
+  <% end %>
+  <% end %>
 </tr>
 <% end %>
 </table>
