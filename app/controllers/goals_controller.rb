@@ -45,6 +45,19 @@ class GoalsController < ApplicationController
     g.save
     redirect_to g.workstream
   end
+
+  def api_table
+    @w = Workstream.find_by_id params[:id]
+    @gls = @w.ordered_goals.select { |g| !g.achieved }
+    @acs = GoalsController.actions.keys
+    respond_to do |format|
+      format.html { render partial:"goal_table", locals: { gls: @gls,
+                                                           acs: @als,
+                                                           id: @w.id } }
+      format.js
+    end
+
+  end
   
   def goal_params
     params.require(:goal).permit(:name,:target,:achieved)

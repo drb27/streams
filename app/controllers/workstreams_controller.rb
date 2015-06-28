@@ -29,12 +29,5 @@ class WorkstreamsController < ApplicationController
     authorize @root_workstreams
   end
 
-  def tag_link_to sym,g
-    atrb = GoalsController.actions[sym]
-    atrb[:id] = g.id
-    return view_context.link_to atrb[:label], {:id => atrb[:id], :controller => atrb[:controller], :action => sym}, :remote => atrb[:remote], :method => atrb[:method]
-  end
   
-  helper_method :tag_link_to  
-
 end

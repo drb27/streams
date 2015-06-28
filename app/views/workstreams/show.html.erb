@@ -8,22 +8,15 @@
 <p><%= link_to c.name, c %></p>
 <% end %>
 <% end %>
-<p>Goals</p>
+<h3>Goals</h3>
 <% if policy(@workstream).modifygoals? %>
 <p><%= link_to "Add goal", new_workstream_goal_path(@workstream) %></p>
 <% end %>
 <% if @workstream.goals.count > 0 %>
-<table class="goaltable">
-<% (@workstream.ordered_goals.select { |gl| !gl.achieved }).each do |g| %>
-<tr id='<%= "goalid_#{g.id}" %>'>
-  <td><%= "#{g.name}" %></td>
-  <td><%= "#{g.due_days.abs} day#{g.due_days.abs>1?"s":""} #{g.due_days<0?"ago":"remaining"}" %></td>
-  <% @actions.each do |a| %>
-  <% if Pundit.policy(@current_user,g).send a.to_s+"?" %>
-  <td><%= tag_link_to a,g %><td>
-  <% end %>
-  <% end %>
-</tr>
-<% end %>
-</table>
+<div id='goalslist'>
+<%= render partial: "goals/goal_table", locals: { gls: @workstream.ordered_goals.select { |g| !g.achieved },
+                                                  acs: @actions,
+                                                  id:  "goalstable" } %>
+</div>
+<%= link_to "Refresh", api_goal_table_path(@workstream), :remote => true %>
 <% end %>

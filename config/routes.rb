@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   
   get 'api/workstreams/:id' => 'workstream_api#fetch'
 
+  get 'api/workstreams/:id/goaltable' => 'goals#api_table', as: :api_goal_table
+
   # get 'home/index'
   root 'home#index'
 
