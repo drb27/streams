@@ -39,8 +39,10 @@ class SessionsController < ApplicationController
       @messages.add_msg "You successfully logged in"
       redirect_to :action => 'home'
     else
-      redirect_to :action => "login"
       @messages.add_msg "Your credentials were bad - please try again", StreamsMsg::ERROR
+      flush_messages
+      render :action => "login"
+
     end
 
   end

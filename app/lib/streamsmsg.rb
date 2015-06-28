@@ -45,6 +45,13 @@ class StreamsMsg
     @messages.count>0
   end
 
+  def to_hash
+    result={}
+    result["messages"] = @messages.clone
+    result["severity"] = @severity
+    result
+  end
+
   def self.max a
     result = StreamsMsg::SUCCESS
     a.each do |i|

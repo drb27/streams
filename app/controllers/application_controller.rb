@@ -30,10 +30,21 @@ class ApplicationController < ActionController::Base
 
   def init_messages
     @messages = StreamsMsg.new
+
+    if flash[:messages] != nil
+      @fmessages = StreamsMsg.new flash[:messages]["messages"], flash[:messages]["severity"]
+    else
+      @fmessages = StreamsMsg.new
+    end
   end
 
   def stage_messages
-    flash[:messages] = @messages
+    flash[:messages] = @messages.to_hash
+  end
+
+  def flush_messages
+    @fmessages = StreamsMsg.new @messages.messages, @messages.severity
+    @messages = StreamsMsg.new
   end
 
   def authenticate_user

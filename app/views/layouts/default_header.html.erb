@@ -1,8 +1,7 @@
-<% if flash[:messages] && flash[:messages]["messages"].count > 0 %>
+<% if @fmessages.count > 0 %>
 <% content_for :messages do %>
-<% @hdrmsg = StreamsMsg.new flash[:messages]["messages"], flash[:messages]["severity"] %>
-<% @tag=@hdrmsg.tag %>
-<% @hdrmsg.each do |m| %>
+<% @tag=@fmessages.tag %>
+<% @fmessages.each do |m| %>
 <%= m %>
 <% end %>
 <% end %>
