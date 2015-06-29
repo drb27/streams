@@ -1,4 +1,5 @@
 require 'streamsmeta'
+require 'streamsmsg'
 
 class ApplicationController < ActionController::Base
 
@@ -14,7 +15,7 @@ class ApplicationController < ActionController::Base
   # User login management
 
   def retrieve_user
-    @message=""
+
     if session[:user_id]
       begin
         @current_user = User.find session[:user_id]
@@ -25,6 +26,14 @@ class ApplicationController < ActionController::Base
     else
       @current_user = false
     end
+  end
+
+  def init_messages
+    @messages = StreamsMsg.new
+  end
+
+  def stage_messages
+    flash[:messages] = @messages
   end
 
   def authenticate_user
@@ -56,6 +65,7 @@ class ApplicationController < ActionController::Base
   # All Pundit access violations get handled by this
   rescue_from Pundit::NotAuthorizedError, :with => :access_denied
   
-  before_filter :retrieve_user
-  
+  before_filter :retrieve_user,:init_messages
+  after_filter :stage_messages
+
 end

@@ -1,3 +1,13 @@
+<% if flash[:messages] && flash[:messages]["messages"].count > 0 %>
+<% content_for :messages do %>
+<% @hdrmsg = StreamsMsg.new flash[:messages]["messages"], flash[:messages]["severity"] %>
+Severity: <%= @hdrmsg.tag %><br/>
+<% @hdrmsg.each do |m| %>
+<%= m %>
+<% end %>
+<% end %>
+<% end %>
+
 <div id='logo'>
   <%= image_tag "logo.jpg" %>
 </div>

@@ -26,6 +26,9 @@ class SessionsController < ApplicationController
 
     # Redirect to the homepage
     redirect_to :controller => 'home', :action => 'index'
+
+    # Set a flash message
+    @messages.add_msg "You were successfully logged out"
     
   end
   
@@ -33,10 +36,11 @@ class SessionsController < ApplicationController
     authorized_user = User.authenticate( params[:name], params[:pwd])
     if authorized_user
       session[:user_id] = authorized_user.id
+      @messages.add_msg "You successfully logged in"
       redirect_to :action => 'home'
     else
-      @message = "Your credentials were bad - please try again"
-      render "login"
+      redirect_to :action => "login"
+      @messages.add_msg "Your credentials were bad - please try again", StreamsMsg::ERROR
     end
 
   end
