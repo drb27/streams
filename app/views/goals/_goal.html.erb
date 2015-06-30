@@ -1,0 +1,7 @@
+<%= form_for [@workstream.becomes(Workstream),@new_goal] do |f| %>
+<%= f.text_field :name %>
+<br/>
+<input type="text" name="anything" id="tgt_date" /><br/>
+<input type="hidden" name="goal[target]" id="target_date" />
+<%= f.submit "Add goal" %>
+<% end %>

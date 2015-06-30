@@ -1,5 +1,4 @@
 <% content_for :head do %>
-
 <script>
   $(function() {
   $("#tgt_date").datepicker( { altField: '#target_date', altFormat: 'yy-mm-dd'} );
@@ -9,10 +8,4 @@
 
 <h1>Add a Goal</h1>
 <p>You are adding a new goal to <b><%= @workstream.name %></b></p>
-<%= form_for [@workstream.becomes(Workstream),@new_goal] do |f| %>
-<%= f.text_field :name %>
-<br/>
-<input type="text" name="anything" id="tgt_date" /><br/>
-<input type="hidden" name="goal[target]" id="target_date" />
-<%= f.submit "Add goal" %>
-<% end %>
+<%= render partial: @new_goal %>
