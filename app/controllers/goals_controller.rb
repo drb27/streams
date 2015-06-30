@@ -17,22 +17,24 @@ class GoalsController < ApplicationController
   end
 
   def create
-    newgoal = Goal.new goal_params
-    newgoal.workstream_id = params[:workstream_id]
-    authorize newgoal
+    @workstream = (Workstream.find_by_id params[:workstream_id]).becomes(Workstream)
+    @new_goal = Goal.new goal_params
+    @new_goal.workstream = @workstream
+    authorize @new_goal
 
-    if newgoal.save
+    if @new_goal.save
       @messages.add_msg "Your goal was successfully created"
-      redirect_to newgoal.workstream
+      redirect_to @new_goal.workstream
     else
-      if newgoal.errors.any?
-        newgoal.errors.full_messages.each do |message|
+      if @new_goal.errors.any?
+        @new_goal.errors.full_messages.each do |message|
           @messages << { message: message, severity: StreamsMsg::ERROR }
         end
       else
         @messages << { message: "A problem occurred - your goal was not saved.", severity: StreamsMsg::ERROR }
       end
-      redirect_to action: "new"
+      flush_messages
+      render action: "new"
     end
   end
 
