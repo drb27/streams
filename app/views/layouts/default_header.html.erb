@@ -1,9 +1,11 @@
 <% if @fmessages.count > 0 %>
 <% content_for :messages do %>
 <% @tag=@fmessages.tag %>
+<ul>
 <% @fmessages.each do |m| %>
-<%= m %>
+<li><%= m %></li>
 <% end %>
+</ul>
 <% end %>
 <% else %>
 <% @tag=nil %>

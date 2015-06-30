@@ -20,8 +20,20 @@ class GoalsController < ApplicationController
     newgoal = Goal.new goal_params
     newgoal.workstream_id = params[:workstream_id]
     authorize newgoal
-    newgoal.save
-    redirect_to newgoal.workstream
+
+    if newgoal.save
+      @messages.add_msg "Your goal was successfully created"
+      redirect_to newgoal.workstream
+    else
+      if newgoal.errors.any?
+        newgoal.errors.full_messages.each do |message|
+          @messages << { message: message, severity: StreamsMsg::ERROR }
+        end
+      else
+        @messages << { message: "A problem occurred - your goal was not saved.", severity: StreamsMsg::ERROR }
+      end
+      redirect_to action: "new"
+    end
   end
 
   def destroy

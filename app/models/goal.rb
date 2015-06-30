@@ -1,6 +1,18 @@
 class Goal < ActiveRecord::Base
+
   belongs_to :workstream
   has_many :task
+
+  after_initialize :default_values
+
+  def validate_workstream_id
+    errors.add( :workstream_id, "is not a valid workstream") unless Workstream.exists?(self.workstream_id)
+  end
+
+  validates :name, :presence => true, :length => { :in => 3..128 }
+  validates :achieved, inclusion: [true,false]
+  validate :validate_workstream_id
+  validates :target, :presence => true # TODO: Validate date properly
 
   def due_days
     return (self.target - Date.today).to_i
@@ -36,6 +48,16 @@ class Goal < ActiveRecord::Base
 
     end
     return l
+  end
+
+  private
+
+  def default_values
+
+    if self.new_record?
+      self.achieved ||= false
+    end
+    
   end
   
 end
