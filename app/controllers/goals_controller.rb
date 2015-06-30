@@ -2,6 +2,7 @@ class GoalsController < ApplicationController
 
   @actions = {
     :destroy => { :label => "Delete", :method => :delete, :remote => true, :controller => 'goals' },
+    :edit => { :label => "Edit", :method => :edit, :controller => 'goals' },
     :complete => { :label => "Complete", :method => :get, :remote => true, :controller => 'goals' }
   }
 
