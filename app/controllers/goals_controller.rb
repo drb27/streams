@@ -2,7 +2,7 @@ class GoalsController < ApplicationController
 
   @actions = {
     :destroy => { :label => "Delete", :method => :delete, :remote => true, :controller => 'goals' },
-    :edit => { :label => "Edit", :method => :edit, :controller => 'goals' },
+    :edit => { :label => "Edit",  :method => :get, :controller => 'goals' },
     :complete => { :label => "Complete", :method => :get, :remote => true, :controller => 'goals' }
   }
 
@@ -17,6 +17,40 @@ class GoalsController < ApplicationController
     @new_goal.workstream = @workstream
   end
 
+  def edit
+    @new_goal = Goal.find params[:id]
+    @workstream = @new_goal.workstream.becomes(Workstream)
+    authorize @new_goal
+  end
+
+  def update
+    
+    @new_goal = Goal.find_by_id params[:id]
+    @workstream = @new_goal.workstream
+    authorize @new_goal
+
+    if @new_goal.update goal_params
+
+      # Update was successful
+      @messages.add_msg "The goal was successfully updated"
+      redirect_to @workstream
+
+    else
+      
+      # Update failed
+      if @new_goal.errors.any?
+        @new_goal.errors.full_messages.each do |message|
+          @messages << { message: message, severity: StreamsMsg::ERROR }
+        end
+      else
+        @messages << { message: "A problem occurred - your goal was not saved.", severity: StreamsMsg::ERROR }  
+      end
+      flush_messages
+      render :edit
+    end
+
+  end
+  
   def create
     @workstream = (Workstream.find_by_id params[:workstream_id]).becomes(Workstream)
     @new_goal = Goal.new goal_params

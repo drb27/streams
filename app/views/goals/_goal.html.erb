@@ -1,7 +1,7 @@
 <%= form_for [@workstream.becomes(Workstream),@new_goal] do |f| %>
 <%= f.text_field :name %>
 <br/>
-<input type="text" name="anything" id="tgt_date" /><br/>
-<input type="hidden" name="goal[target]" id="target_date" />
+<%= f.text_field :target, { :id => 'tgt_date', :name => 'anything', :class => "", :value => "#{f.object.target.strftime("%m/%d/%Y") unless f.object.new_record?}"} %>
+<%= f.hidden_field :target, { :id => 'tgt_date_alt' }  %>
 <%= f.submit "Add goal" %>
 <% end %>
