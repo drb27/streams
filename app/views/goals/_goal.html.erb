@@ -1,4 +1,4 @@
-<%= form_for [@workstream.becomes(Workstream),@new_goal] do |f| %>
+<%= form_for [@workstream.becomes(Workstream),@goal] do |f| %>
 <%= f.text_field :name %>
 <br/>
 <%= f.text_field :target, { :id => 'tgt_date', :name => 'anything', :class => "", :value => "#{f.object.target.strftime("%m/%d/%Y") unless f.object.new_record?}"} %>

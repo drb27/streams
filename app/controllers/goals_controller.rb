@@ -13,23 +13,23 @@ class GoalsController < ApplicationController
   def new
     @workstream = (Workstream.find_by_id params[:workstream_id]).becomes(Workstream)
     authorize @workstream, :modifygoals?
-    @new_goal = Goal.new
-    @new_goal.workstream = @workstream
+    @goal = Goal.new
+    @goal.workstream = @workstream
   end
 
   def edit
-    @new_goal = Goal.find params[:id]
-    @workstream = @new_goal.workstream.becomes(Workstream)
-    authorize @new_goal
+    @goal = Goal.find params[:id]
+    @workstream = @goal.workstream.becomes(Workstream)
+    authorize @goal
   end
 
   def update
     
-    @new_goal = Goal.find_by_id params[:id]
-    @workstream = @new_goal.workstream
-    authorize @new_goal
+    @goal = Goal.find_by_id params[:id]
+    @workstream = @goal.workstream
+    authorize @goal
 
-    if @new_goal.update goal_params
+    if @goal.update goal_params
 
       # Update was successful
       @messages.add_msg "The goal was successfully updated"
@@ -38,8 +38,8 @@ class GoalsController < ApplicationController
     else
       
       # Update failed
-      if @new_goal.errors.any?
-        @new_goal.errors.full_messages.each do |message|
+      if @goal.errors.any?
+        @goal.errors.full_messages.each do |message|
           @messages << { message: message, severity: StreamsMsg::ERROR }
         end
       else
@@ -53,16 +53,16 @@ class GoalsController < ApplicationController
   
   def create
     @workstream = (Workstream.find_by_id params[:workstream_id]).becomes(Workstream)
-    @new_goal = Goal.new goal_params
-    @new_goal.workstream = @workstream
-    authorize @new_goal
+    @goal = Goal.new goal_params
+    @goal.workstream = @workstream
+    authorize @goal
 
-    if @new_goal.save
+    if @goal.save
       @messages.add_msg "Your goal was successfully created"
-      redirect_to @new_goal.workstream
+      redirect_to @goal.workstream
     else
-      if @new_goal.errors.any?
-        @new_goal.errors.full_messages.each do |message|
+      if @goal.errors.any?
+        @goal.errors.full_messages.each do |message|
           @messages << { message: message, severity: StreamsMsg::ERROR }
         end
       else
