@@ -47,6 +47,10 @@ Rails.application.routes.draw do
     resources :goals
   end
 
+  resources :goals do
+    resources :tasks
+  end
+
   resources :projects, :controller => "workstreams", :type => "Project"
 
   #resources :goals
