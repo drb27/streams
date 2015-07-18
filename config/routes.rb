@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/di/test_(:pc).png' => "timebar#testBlob"
+  
   get 'ajax/dispatch' => 'ajax#dispatch_action'
 
   get 'sessions/login'

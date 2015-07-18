@@ -2,6 +2,7 @@
 <% gls.each do |g| %>
 <tr id='<%= "goalid_#{g.id}" %>'>
   <td><%= "#{g.name}" %></td>
+  <td><img src='/di/test_<%= g.percentage_time %>.png'></img></td>
   <td><%= "#{g.due_days.abs} day#{g.due_days.abs>1?"s":""} #{g.due_days<0?"ago":"remaining"}" %></td>
   <% acs.each do |a| %>
   <% if Pundit.policy(@current_user,g).send a.to_s+"?" %>

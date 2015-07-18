@@ -18,6 +18,13 @@ class Goal < ActiveRecord::Base
     return (self.target - Date.today).to_i
   end
 
+  def percentage_time
+    days = (self.target - self.created_at.to_date).to_i
+    days_in = (Date.today - self.created_at.to_date).to_i
+
+    return days_in * 100 / days
+  end
+
   def late?
     self.due_days < 0
   end
