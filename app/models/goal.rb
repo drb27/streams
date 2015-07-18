@@ -22,6 +22,9 @@ class Goal < ActiveRecord::Base
     days = (self.target - self.created_at.to_date).to_i
     days_in = (Date.today - self.created_at.to_date).to_i
 
+    if days == 0
+      days=1
+    end
     return days_in * 100 / days
   end
 
