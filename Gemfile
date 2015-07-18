@@ -20,6 +20,8 @@ gem 'jquery-rails'
 # Use jquery-ui for ui elements
 gem 'jquery-ui-rails'
 
+gem 'rmagick'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 
