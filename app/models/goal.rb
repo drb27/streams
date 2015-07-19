@@ -9,9 +9,14 @@ class Goal < ActiveRecord::Base
     errors.add( :workstream_id, "is not a valid workstream") unless Workstream.exists?(self.workstream_id)
   end
 
+  def validate_goal_is_in_future
+    errors.add( :target, "is not in the future") unless self.target && (self.target >= Date.today)
+  end
+
   validates :name, :presence => true, :length => { :in => 3..128 }
   validates :achieved, inclusion: [true,false]
   validate :validate_workstream_id
+  validate :validate_goal_is_in_future
   validates :target, :presence => true # TODO: Validate date properly
 
   def due_days
