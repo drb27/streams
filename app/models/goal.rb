@@ -19,6 +19,14 @@ class Goal < ActiveRecord::Base
   validate :validate_goal_is_in_future
   validates :target, :presence => true # TODO: Validate date properly
 
+  before_update :set_achieved_date, :if => :achieved_changed?
+
+  def set_achieved_date
+    if self.achieved
+      self.achieved_at = Date.today
+    end
+  end
+  
   def due_days
     return (self.target - Date.today).to_i
   end

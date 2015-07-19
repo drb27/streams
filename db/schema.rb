@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623101659) do
+ActiveRecord::Schema.define(version: 20150719134044) do
 
   create_table "goals", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150623101659) do
     t.integer  "workstream_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.date     "achieved_at"
   end
 
   create_table "tasks", force: :cascade do |t|
