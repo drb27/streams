@@ -6,7 +6,7 @@
     <%= image_tag "ex.png" %>
     <% end %>
   </td>
-  <td><%= "#{g.name}" %></td>
+  <td><%= link_to g.name, g %></td>
   <td><img src='/di/test_<%= g.percentage_time %>.png'></img></td>
   <td>
     <%= "#{g.due_days.abs} day#{g.due_days.abs>1?"s":""} #{g.due_days<0?"ago!":"remaining"}" %>

@@ -1,0 +1,9 @@
+<p><%= link_to w.name, w %></p>
+<table style="padding-left:15px;">
+<% gls = w.goals.where(:achieved => false) ; gls.reject { |g| !g.late? }.each do |lg| %>
+<tr>
+  <td><%= image_tag "ex.png" %></td>
+  <td><%= link_to lg.name, lg %> <em>is late!</em></td>
+</tr>
+<% end %>
+</table>

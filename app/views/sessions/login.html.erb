@@ -1,5 +1,8 @@
 <% @page_title = "UserAuth | Login " -%>
 <h2>Log in to <%= StreamsMeta::APPLICATION_NAME %></h2>
+<% if @redirecting %>
+<p>The page you requested requires authentication. Please log in and you will be redirected.</p>
+<% end %>
 <%= form_tag( :action => 'login_attempt') do %>
 <p>Username:</br> <%= text_field_tag(:name)  %></p>
 <p>Password:</br> <%= password_field_tag(:pwd)  %></p>

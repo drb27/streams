@@ -1,4 +1,6 @@
 <h1>Top Level Workstreams</h1>
+<ul>
 <% @root_workstreams.each do |w| %>
-<p><%= link_to w.name, w %></p>
+<li><%= render partial: "workstream_digest", locals: { w: w } %></li>
 <% end %>
+</ul>

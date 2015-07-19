@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   end
   
   def login
+    @redirecting = (session[:return_to]!=nil)
   end
 
   def home

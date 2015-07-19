@@ -1,5 +1,9 @@
 class GoalPolicy < ApplicationPolicy
 
+  def show?
+    return user
+  end
+  
   def create?
     return user && record.workstream && Pundit.policy(user,record.workstream.becomes(Workstream)).modifygoals?
   end

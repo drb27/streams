@@ -17,6 +17,11 @@ class GoalsController < ApplicationController
     @goal.workstream = @workstream
   end
 
+  def show
+    @goal = Goal.find params[:id]
+    authorize @goal
+  end
+  
   def edit
     @goal = Goal.find params[:id]
     @workstream = @goal.workstream.becomes(Workstream)
