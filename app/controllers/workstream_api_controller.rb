@@ -1,4 +1,4 @@
-class WorkstreamApiController < ApplicationController
+class WorkstreamApiController < ApiApplicationController
 
   def fetch
     w = (Workstream.find_by_id params[:id]).becomes Workstream

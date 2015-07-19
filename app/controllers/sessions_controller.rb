@@ -37,7 +37,10 @@ class SessionsController < ApplicationController
     if authorized_user
       session[:user_id] = authorized_user.id
       @messages.add_msg "You successfully logged in"
-      redirect_to :action => 'home'
+      url = session[:return_to] || sessions_home_path
+      session[:return_to] = nil
+      url = root_path if url.eql?('/logout')
+      redirect_to url
     else
       @messages.add_msg "Your credentials were bad - please try again", StreamsMsg::ERROR
       flush_messages
