@@ -7,7 +7,8 @@ class GoalsController < ApplicationController
   }
 
   @completedactions = {
-    :uncomplete => { :label => "Uncomplete", :method => :get, :remote => true, :controller => 'goals' }
+    :uncomplete => { :label => "Uncomplete", :method => :get, :remote => true, :controller => 'goals' },
+    :destroy => { :label => "Delete", :method => :delete, :remote => true, :controller => 'goals' }
   }
 
   def self.actions
