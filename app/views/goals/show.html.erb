@@ -11,7 +11,7 @@
     <tr><%= @goal.name %></tr>
   </table>
 </h2>
-<h4>Goal in workstream <em><%= link_to @goal.workstream.name, @goal.workstream %></em></h4>
+<p>Goal in workstream <em><%= link_to @goal.workstream.name, @goal.workstream %></em></p>
 <p>Target date: <%= @goal.target %></p>
 <table>
   <tr>
@@ -19,3 +19,13 @@
     <td><%= "#{@goal.due_days.abs} day#{@goal.due_days.abs>1?"s":""} #{@goal.due_days<0?"ago!":"remaining"}" %></td>
   </tr>
 </table>
+<% if @goal.goalcomment.count > 0 %>
+<h3>Comments</h3>
+<table>
+  <% @goal.goalcomment.each do |gc| %>
+  <tr><td><hr/><h4><%= gc.headline %></h4><span class='annotation'><em>Posted on <%= gc.created_at %></em></span></td></tr>
+  <tr><td><%= gc.body %></td></tr>
+  <% end %>
+</table>
+<% end %>
+
