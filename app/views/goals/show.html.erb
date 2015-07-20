@@ -12,3 +12,10 @@
   </table>
 </h2>
 <h4>Goal in workstream <em><%= link_to @goal.workstream.name, @goal.workstream %></em></h4>
+<p>Target date: <%= @goal.target %></p>
+<table>
+  <tr>
+    <td><img src='/di/test_<%= @goal.percentage_time %>.png'/></td>
+    <td><%= "#{@goal.due_days.abs} day#{@goal.due_days.abs>1?"s":""} #{@goal.due_days<0?"ago!":"remaining"}" %></td>
+  </tr>
+</table>
