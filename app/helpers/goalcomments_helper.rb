@@ -1,0 +1,2 @@
+module GoalcommentsHelper
+end

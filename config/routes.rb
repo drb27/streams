@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'goalcomments/create'
+
+  get 'goalcomments/new'
+
+  get 'goalcomments/edit'
+
+  get 'goalcomments/update'
+
+  get 'goalcomments/destroy'
+
+  get 'goalcomments/api_table'
+
   get '/di/test_(:pc).png' => "timebar#testBlob"
   
   get 'ajax/dispatch' => 'ajax#dispatch_action'
@@ -53,6 +65,7 @@ Rails.application.routes.draw do
 
   resources :goals do
     resources :tasks
+    resources :goalcomments
   end
 
   resources :projects, :controller => "workstreams", :type => "Project"
