@@ -3,8 +3,8 @@ require 'rmagick'
 class TimebarController < ApplicationController
 
   def testBlob
-    width=70
-    height=8
+    width=60
+    height=9
     percentage = Integer(params[:pc])
     img = Magick::Image.new width, height
     img.format = "PNG"
@@ -14,15 +14,15 @@ class TimebarController < ApplicationController
     boundary = width * percentage / 100
     
     # Time gone
-    gc.stroke = 'red'
-    gc.fill = 'red'
+    gc.stroke = '#A0C0ff'
+    gc.fill = '#0080ff'
     gc.rectangle 0, 0, boundary, height
     gc.draw img
     
     # Time left to go
     gc = Magick::Draw.new
-    gc.stroke = 'green'
-    gc.fill = 'green'
+    gc.stroke = '#a0c0ff'
+    gc.fill = '#a0c0ff'
     gc.rectangle boundary+1, 0, width, height
     gc.draw img
     send_data img.to_blob, :type => 'image/png', :disposition => 'inline'
