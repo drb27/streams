@@ -31,5 +31,11 @@
                                                   acs: @actions,
                                                   id:  "goalstable" } %>
 </div>
+<h3>Completed Goals</h3>
+<div id='completedgoalslist'>
+<%= render partial: "goals/completed_goal_table", locals: { gls: @workstream.completed_goals,
+                                                  acs: [],
+                                                  id:  "completedgoalstable" } %>
+</div>
 
 <% end %>

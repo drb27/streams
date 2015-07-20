@@ -18,5 +18,10 @@ class Workstream < ActiveRecord::Base
   def ordered_goals
     self.goals.sort { |x,y| x.target <=> y.target }
   end
+
+  def completed_goals
+    gls = self.goals.where :achieved => true
+    gls.sort { |x,y| x.achieved_at <=> y.achieved_at  }
+  end
   
 end
