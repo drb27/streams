@@ -13,7 +13,7 @@
   </td>
   <% acs.each do |a| %>
   <% if Pundit.policy(@current_user,g).send a.to_s+"?" %>
-  <td class='actioncell'><%= tag_link_to a,g %><td>
+  <td class='actioncell'><%= tag_link_to a,g,GoalsController.actions[a] %><td>
   <% end %>
   <% end %>
 </tr>

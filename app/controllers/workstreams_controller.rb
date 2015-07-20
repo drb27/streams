@@ -21,7 +21,7 @@ class WorkstreamsController < ApplicationController
 
     # Get a list of actions from the goals controller
     @actions = GoalsController.actions.keys
-
+    @completedactions = GoalsController.completedactions.keys
   end
 
   def index

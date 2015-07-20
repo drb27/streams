@@ -6,8 +6,16 @@ class GoalsController < ApplicationController
     :complete => { :label => "Complete", :method => :get, :remote => true, :controller => 'goals' }
   }
 
+  @completedactions = {
+    :uncomplete => { :label => "Uncomplete", :method => :get, :remote => true, :controller => 'goals' }
+  }
+
   def self.actions
     return @actions
+  end
+
+  def self.completedactions
+    return @completedactions
   end
 
   def new
@@ -95,7 +103,7 @@ class GoalsController < ApplicationController
     g=Goal.find_by_id params[:id]
     @w = g.workstream.becomes(Workstream)
     @acs_a = GoalsController.actions.keys
-    @acs_b = []
+    @acs_b = GoalsController.completedactions.keys
     @divname_a = "goalslist"
     @divname_b = "completedgoalslist"
     authorize g
@@ -110,18 +118,36 @@ class GoalsController < ApplicationController
     end
   end
 
+  def uncomplete
+    g=Goal.find_by_id params[:id]
+    @w = g.workstream.becomes(Workstream)
+    @acs_a = GoalsController.actions.keys
+    @acs_b = GoalsController.completedactions.keys
+    @divname_a = "goalslist"
+    @divname_b = "completedgoalslist"
+    authorize g
+    g.achieved=false
+    g.achieved_at=nil
+    g.save
+    @gls_a = @w.ordered_goals.select { |g| !g.achieved }
+    @gls_b = @w.completed_goals
+
+    respond_to do |format|
+      format.html  { redirect_to g.workstream }
+      format.js { render action: "api_table" } 
+    end
+    
+  end
+  
   def api_table
     @w = Workstream.find_by_id params[:id]
     @gls_a = @w.ordered_goals.select { |g| !g.achieved }
     @gls_b = @w.completed_goals
     @acs_a = GoalsController.actions.keys
-    @acs_b = []
+    @acs_b = GoalsController.completedactions.keys
     @divname_a = "goalslist"
     @divname_b = "completedgoalslist"
     respond_to do |format|
-      format.html { render partial:"goal_table", locals: { gls: @gls,
-                                                           acs: @als,
-                                                           id: @w.id } }
       format.js
     end
 

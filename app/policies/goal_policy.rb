@@ -24,4 +24,8 @@ class GoalPolicy < ApplicationPolicy
     return user && record.workstream && Pundit.policy(user,record.workstream.becomes(Workstream)).modifygoals?
   end
 
+  def uncomplete?
+    return user && record.workstream && Pundit.policy(user,record.workstream.becomes(Workstream)).modifygoals?
+  end
+
 end

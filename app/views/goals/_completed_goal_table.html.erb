@@ -1,14 +1,16 @@
 <table class="goaltable" id='<%= id %>'>
-<% gls.each do |g| %>
+
+  <% gls.each do |g| %>
 <tr id='<%= "goalid_#{g.id}" %>'>
   <td><%= image_tag "trophy.png" %></td>
   <td><%= link_to g.name, g %></td>
   <td class='annotation'><em>Completed <%= g.achieved_at %></em></td>
   <% acs.each do |a| %>
   <% if Pundit.policy(@current_user,g).send a.to_s+"?" %>
-  <td class='actioncell'><%= tag_link_to a,g %><td>
+  <td class='actioncell'><%= tag_link_to a,g, GoalsController.completedactions[a] %><td>
   <% end %>
   <% end %>
 </tr>
 <% end %>
+
 </table>
