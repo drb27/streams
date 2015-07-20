@@ -10,7 +10,11 @@ class Goal < ActiveRecord::Base
   end
 
   def validate_goal_is_in_future
-    errors.add( :target, "is not in the future") unless self.target && (self.target >= Date.today)
+    if self.new_record?
+      errors.add( :target, "is not in the future") unless self.target && (self.target >= Date.today)
+    else
+      errors.add( :target, "is before the creation date (#{self.created_at.to_date})") unless self.target && (self.target >= self.created_at.to_date)
+    end
   end
 
   validates :name, :presence => true, :length => { :in => 3..128 }
