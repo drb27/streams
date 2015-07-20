@@ -1,1 +1,2 @@
-$('#<%= @divname %>').html("<%= escape_javascript( render partial:"goal_table", locals: { gls: @gls, acs: @acs, id: @w.id } ) %>");
+$('#<%= @divname_a %>').html("<%= escape_javascript( render partial:"goal_table", locals: { gls: @gls_a, acs: @acs_a, id: @w.id } ) %>");
+$('#<%= @divname_b %>').html("<%= escape_javascript( render partial:"completed_goal_table", locals: { gls: @gls_b, acs:@acs_b, id: @w.id } ) %>");

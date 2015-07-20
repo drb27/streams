@@ -94,12 +94,15 @@ class GoalsController < ApplicationController
   def complete
     g=Goal.find_by_id params[:id]
     @w = g.workstream.becomes(Workstream)
-    @acs = GoalsController.actions.keys
-    @divname = "goalslist"
+    @acs_a = GoalsController.actions.keys
+    @acs_b = []
+    @divname_a = "goalslist"
+    @divname_b = "completedgoalslist"
     authorize g
     g.achieved=true
     g.save
-    @gls = @w.ordered_goals.select { |g| !g.achieved }
+    @gls_a = @w.ordered_goals.select { |g| !g.achieved }
+    @gls_b = @w.completed_goals
 
     respond_to do |format|
       format.html  { redirect_to g.workstream }
@@ -109,9 +112,12 @@ class GoalsController < ApplicationController
 
   def api_table
     @w = Workstream.find_by_id params[:id]
-    @gls = @w.ordered_goals.select { |g| !g.achieved }
-    @acs = GoalsController.actions.keys
-    @divname = "goalslist"
+    @gls_a = @w.ordered_goals.select { |g| !g.achieved }
+    @gls_b = @w.completed_goals
+    @acs_a = GoalsController.actions.keys
+    @acs_b = []
+    @divname_a = "goalslist"
+    @divname_b = "completedgoalslist"
     respond_to do |format|
       format.html { render partial:"goal_table", locals: { gls: @gls,
                                                            acs: @als,
