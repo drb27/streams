@@ -2,7 +2,8 @@ class Goal < ActiveRecord::Base
 
   belongs_to :workstream
   has_many :task
-
+  has_many :goalcomment
+  
   after_initialize :default_values
 
   def validate_workstream_id
