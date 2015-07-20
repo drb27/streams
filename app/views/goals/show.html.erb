@@ -1,2 +1,14 @@
-<h2><%= @goal.name %></h2>
+<h2>
+  <table>
+    <tr>
+      <% if @goal.achieved %>
+      <%= image_tag "trophy.png" %>
+      <% else
+         if @goal.late? %>
+      <%= image_tag "ex.png" %>
+      <% end; end %>
+    </tr>
+    <tr><%= @goal.name %></tr>
+  </table>
+</h2>
 <h4>Goal in workstream <em><%= link_to @goal.workstream.name, @goal.workstream %></em></h4>
