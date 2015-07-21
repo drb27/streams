@@ -1,0 +1,2 @@
+$('#<%= @divname %>').html("<%= escape_javascript( render partial:"goalcomments_table", 
+	locals: { comments: @comments, acs: [], goal_id: @goal.id } ) %>");

@@ -10,8 +10,6 @@ Rails.application.routes.draw do
 
   get 'goalcomments/destroy'
 
-  get 'goalcomments/api_table'
-
   get '/di/test_(:pc).png' => "timebar#testBlob"
   
   get 'ajax/dispatch' => 'ajax#dispatch_action'
@@ -50,11 +48,12 @@ Rails.application.routes.draw do
 
   get 'goals/:id/complete' => 'goals#complete'
 
-    get 'goals/:id/uncomplete' => 'goals#uncomplete'
+  get 'goals/:id/uncomplete' => 'goals#uncomplete'
   
   get 'api/workstreams/:id' => 'workstream_api#fetch'
 
   get 'api/workstreams/:id/goaltable' => 'goals#api_table', as: :api_goal_table
+  get 'api/goals/:id/goalcommentstable' => 'goalcomments#api_table', as: :api_goalcomments_table
 
   # get 'home/index'
   root 'home#index'

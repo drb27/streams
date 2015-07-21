@@ -1,0 +1,7 @@
+<table class="goalcommentstable" id='goalcommentstable'>
+<% comments.each do |c| %>
+<tr id='<%= "goalcommentid_#{c.id}" %>'>
+  <td>Goal comment: <%= c.headline %></td>
+</tr>
+<% end %>
+</table>
