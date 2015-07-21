@@ -28,6 +28,8 @@ class GoalsController < ApplicationController
 
   def show
     @goal = Goal.find params[:id]
+    @goalcomment = Goalcomment.new
+    @goalcomment.goal = @goal
     authorize @goal
   end
   

@@ -1,7 +1,12 @@
 <table class="goalcommentstable" id='goalcommentstable'>
 <% comments.each do |c| %>
 <tr id='<%= "goalcommentid_#{c.id}" %>'>
-  <td>Goal comment: <%= c.headline %></td>
+  <td>
+    <hr/>
+    <h4><%= c.headline %></h4>
+    <span class='annotation'>Posted by <b><%= c.user.name %></b> on <%= c.created_at %></span><br/>
+    <%= c.body %>
+    </td>
 </tr>
 <% end %>
 </table>

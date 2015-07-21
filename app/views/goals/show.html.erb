@@ -26,4 +26,9 @@
   <%= render partial: "goalcomments/goalcomments_table", locals: { comments: @goal.goalcomment }  %>
 </div>
 <% end %>
+<div id='addcomment'>
+  <h3>Add a comment</h3>
+  <%= render partial: "goalcomments/add_form", locals: { goal: @goal, goalcomment: @goalcomment } %>
+</div>
+
 
