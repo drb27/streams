@@ -90,10 +90,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def init_sidebar
+    @pinned = Workstream.where :pinned => true
+  end
+
   # All Pundit access violations get handled by this
   rescue_from Pundit::NotAuthorizedError, :with => :access_denied
   
-  before_filter :retrieve_user,:init_messages
+  before_filter :retrieve_user,:init_messages,:init_sidebar
   after_filter :stage_messages
 
 end

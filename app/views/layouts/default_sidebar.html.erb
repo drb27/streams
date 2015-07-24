@@ -1,1 +1,6 @@
-<p>Let's have a sidebar conversation. How are you doing today?</p>
+<h4>Pinned Workstreams:</h4>
+<ul>
+<% @pinned.each do |p| %>
+<li><%= link_to p.name, p %></li>
+<% end %>
+<ul>
