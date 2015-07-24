@@ -50,7 +50,14 @@ ActiveRecord::Schema.define(version: 20150724153549) do
     t.datetime "updated_at", null: false
   end
 
-# Could not dump table "workstreams" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "workstreams", force: :cascade do |t|
+    t.string   "name"
+    t.string   "type"
+    t.integer  "parent_workstream_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "color",
+    t.boolean  "pinned"
+  end
 
 end
