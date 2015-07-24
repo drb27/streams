@@ -3,6 +3,14 @@ class Workstream < ActiveRecord::Base
   has_many :children, nil, { :class_name => "Workstream", :foreign_key => "parent_workstream_id" }
   has_many :goals, nil, { :class_name => "Goal", :foreign_key => "workstream_id" }
 
+  after_initialize :default_values
+
+  def default_values
+    if self.new_record?
+      self.pinned ||= false
+    end
+  end
+
   def self.root_collection
     return Workstream.where( parent: nil )
   end

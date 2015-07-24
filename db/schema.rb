@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720112200) do
+ActiveRecord::Schema.define(version: 20150724153549) do
 
   create_table "goalcomments", force: :cascade do |t|
     t.string   "headline"
@@ -50,13 +50,7 @@ ActiveRecord::Schema.define(version: 20150720112200) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "workstreams", force: :cascade do |t|
-    t.string   "name"
-    t.string   "type"
-    t.integer  "parent_workstream_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.string   "color"
-  end
+# Could not dump table "workstreams" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
 end
